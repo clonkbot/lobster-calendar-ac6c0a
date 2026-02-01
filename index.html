@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lobster Calendar - Navigate the Tides of Time</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --deep-ocean: #0a1628;
+        --midnight-blue: #0f2137;
+        --navy-mist: #1a3a5c;
+        --coral-red: #c75b5b;
+        --coral-light: #e07a7a;
+        --seafoam: #4a7c8f;
+        --pearl: #e8eef4;
+        --muted-sand: #8fa4b8;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Quicksand', sans-serif;
+        background: linear-gradient(180deg, var(--deep-ocean) 0%, var(--midnight-blue) 50%, #0d1f33 100%);
+        min-height: 100vh;
+        color: var(--pearl);
+        overflow-x: hidden;
+      }
+      
+      .font-display {
+        font-family: 'Cormorant Garamond', serif;
+      }
+      
+      .text-coral {
+        color: var(--coral-red);
+      }
+      
+      .text-coral-light {
+        color: var(--coral-light);
+      }
+      
+      .text-muted {
+        color: var(--muted-sand);
+      }
+      
+      .text-seafoam {
+        color: var(--seafoam);
+      }
+      
+      .bg-card {
+        background: linear-gradient(145deg, rgba(26, 58, 92, 0.4) 0%, rgba(15, 33, 55, 0.6) 100%);
+        border: 1px solid rgba(74, 124, 143, 0.3);
+      }
+      
+      .calendar-border {
+        border: 1px solid rgba(74, 124, 143, 0.4);
+        box-shadow: 0 0 40px rgba(74, 124, 143, 0.1), inset 0 1px 0 rgba(255,255,255,0.05);
+      }
+      
+      .today-highlight {
+        border: 2px solid rgba(74, 124, 143, 0.8);
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(74, 124, 143, 0.3);
+      }
+      
+      .lobster-float {
+        animation: gentle-float 3s ease-in-out infinite;
+      }
+      
+      .lobster-float:nth-child(2) { animation-delay: 0.2s; }
+      .lobster-float:nth-child(3) { animation-delay: 0.4s; }
+      .lobster-float:nth-child(4) { animation-delay: 0.6s; }
+      .lobster-float:nth-child(5) { animation-delay: 0.8s; }
+      
+      @keyframes gentle-float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+      }
+      
+      .bubble {
+        position: absolute;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent);
+        border-radius: 50%;
+        animation: rise 8s ease-in infinite;
+        opacity: 0;
+      }
+      
+      @keyframes rise {
+        0% { opacity: 0; transform: translateY(100vh) scale(0); }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.3; }
+        100% { opacity: 0; transform: translateY(-100px) scale(1); }
+      }
+      
+      .nav-btn {
+        transition: all 0.3s ease;
+      }
+      
+      .nav-btn:hover {
+        color: var(--coral-light);
+        transform: scale(1.05);
+      }
+      
+      .day-cell {
+        transition: all 0.2s ease;
+      }
+      
+      .day-cell:hover:not(.today-highlight) {
+        background: rgba(74, 124, 143, 0.2);
+        border-radius: 8px;
+      }
+      
+      .fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .wave-border {
+        position: relative;
+      }
+      
+      .wave-border::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--seafoam), transparent);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
